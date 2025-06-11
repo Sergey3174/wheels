@@ -255,8 +255,8 @@ export const Carousel = () => {
         <div className="carousel__box">
           <div className="carousel__info">
             <div className="cardsScroll" ref={itemsBox}>
-              {[]
-                .concat(...Array(repeatCount.current).fill(items))
+              {Array.from({ length: repeatCount.current })
+                .flatMap(() => items)
                 .map((item, index) => (
                   <Item
                     key={index}
