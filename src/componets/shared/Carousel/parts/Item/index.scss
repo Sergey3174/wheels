@@ -17,14 +17,12 @@
   transform: translateZ(0);
   position: relative;
   user-select: none;
-  will-change: min-height, min-width;
 
   p {
     font-weight: 600;
     line-height: 1;
     text-transform: uppercase;
     font-size: 30px;
-    transition: transform 0.3s linear;
   }
 
   .img-ticket {

@@ -10,7 +10,11 @@ export const Item = React.memo(({ index, count, isActive }) => {
       }`}
     >
       <div className="img-ticket">
-        <img src="/icons/tickets/ticketNoShadow.png" alt="иконка билета" />
+        <img
+          src="/icons/tickets/ticketNoShadow.webp"
+          alt="иконка билета"
+          loading="lazy"
+        />
       </div>
 
       <div className="cardsScroll-item__content">

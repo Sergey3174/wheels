@@ -42,16 +42,16 @@ body {
   align-items: center;
   justify-content: center;
 
-  &:before {
-    transition: all 0.7s;
-    position: absolute;
-    content: "";
-    width: 340px;
-    height: 310px;
-    background-repeat: no-repeat;
-    z-index: 0;
-    background-image: url(/icons/decors/starLinear.svg);
-  }
+  // &:before {
+  //   transition: all 0.7s;
+  //   position: absolute;
+  //   content: "";
+  //   width: 340px;
+  //   height: 310px;
+  //   background-repeat: no-repeat;
+  //   z-index: 0;
+  //   background-image: url(/icons/decors/starLinear.svg);
+  // }
 
   img {
     width: 114px;

@@ -24,7 +24,7 @@ export const WinModal = ({ tickets, isOpenModal, onClose }) => {
 
                     <div className="img-ticket">
                       <img
-                        src="./icons/tickets/ticketNoShadow.png"
+                        src="./icons/tickets/ticketNoShadow.webp"
                         alt="иконка билета"
                       />
                     </div>
