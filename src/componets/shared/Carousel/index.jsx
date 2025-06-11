@@ -100,11 +100,15 @@ export const Carousel = () => {
       .to(itemsBox.current, {
         x: 0,
         duration: 0,
+        force3D: true,
+        willChange: "transform",
         ease: "none",
       })
       .to(itemsBox.current, {
         x: `-=${shift + randomOffset}`,
         duration: 10,
+        force3D: true,
+        willChange: "transform",
         ease: "power4.out",
         // звук открытия крутилки
         onStart: function () {
@@ -127,7 +131,6 @@ export const Carousel = () => {
             document
               .querySelector(`.cardsScroll-item-${centerIndex - 1}`)
               .classList.remove("activeScroll");
-
           }
           // Для проигрыша звука
           if (currentActiveIndex.current !== centerIndex) {
@@ -173,6 +176,8 @@ export const Carousel = () => {
     gsap.to(container, {
       x: `+=${offset}`,
       duration: 0.5,
+      force3D: true,
+      willChange: "transform",
       ease: "power2.out",
     });
   };
