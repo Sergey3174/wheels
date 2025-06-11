@@ -28,10 +28,46 @@ export const Carousel = () => {
   const scrollSound = new Audio("/sounds/case-spin.mp3");
   const scrollEndSound = new Audio("/sounds/take-drop.wav");
 
+  const AUDIO_VOLUME = {
+    scrollStart: 0.3,
+    scroll: 0.3,
+    scrollEnd: 0.4,
+  };
+
+  const CARD_SIZES = {
+    small: 145,
+    large: 170,
+  };
+
+  const getCardWidth = () =>
+    window.innerWidth >= 460 ? CARD_SIZES.large : CARD_SIZES.small;
+
   useEffect(() => {
-    startScrollSound.volume = 0.3;
-    scrollSound.volume = 0.3;
-    scrollEndSound.volume = 0.4;
+    startScrollSound.volume = AUDIO_VOLUME.scrollStart;
+    scrollSound.volume = AUDIO_VOLUME.scroll;
+    scrollEndSound.volume = AUDIO_VOLUME.scrollEnd;
+  }, []);
+
+  useEffect(() => {
+    const width = getCardWidth();
+    cardWidth.current = width;
+    isSmall.current = width === CARD_SIZES.small;
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getItems();
+
+      requestAnimationFrame(() => {
+        centerActiveElement();
+      });
+
+      if (itemsBox.current) {
+        totalWidth.current = itemsBox.current.scrollWidth / repeatCount.current;
+      }
+    };
+
+    fetchData();
   }, []);
 
   // Получить предметы для рулетки
@@ -90,10 +126,8 @@ export const Carousel = () => {
     const randomOffset = getRandomShiftOffset();
 
     // Дополнительный отступ для различных экранов и отступов(чтобы нормально работала смена активного элемента)
-    const additionalOffset = isSmall.current
-      ? 30
-      : 0
-      
+    const additionalOffset = isSmall.current ? 30 : 0;
+
     // Анимация прокрутки с рандомным смещением
     return gsap
       .timeline()
@@ -166,71 +200,54 @@ export const Carousel = () => {
     const activeCardWidth = isSmall.current ? 183 : 213;
     const container = itemsBox.current;
 
-    const cardRect = activeCard.getBoundingClientRect();
-    const containerCenterX = window.innerWidth / 2;
-    const cardCenterX = cardRect.left + activeCardWidth / 2;
-    const offset = containerCenterX - cardCenterX;
-    // Центрируем активный элемент
-    gsap.to(container, {
-      x: `+=${offset}`,
-      duration: 0.5,
-      force3D: true,
-      willChange: "transform",
-      ease: "power2.out",
-    });
-  };
-
-  const startGame = () => {
-    setIsScrolling(true);
-    const getWinCard = async () => {
-      const prizeId = await getWinCardInfo();
-      if (!prizeId) {
-        setIsScrolling(false);
-        return;
-      }
-      setWinPrize(prizeId);
-      // доп прокрутки
-      const extraRounds = 2;
-
-      // находим index выигрышной карты и считаем её позицию
-      const winCard =
-        prizeId -
-        2 +
-        (itemsBox.current.children.length / repeatCount.current) * extraRounds;
-
-      const fullCardsWidthX = winCard * cardWidth.current;
-      const gapFull = winCard * gap.current;
-      const oneMiddleCard = cardWidth.current / 2;
-      const positionX = fullCardsWidthX + gapFull + oneMiddleCard;
-      // Удаляем active если есть
-      document
-        .querySelector(".cardsScroll-item.active")
-        ?.classList.remove("active");
-      // Создаём и запускаем анимацию
-      const animation = createAnimation(positionX, winCard, prizeId);
-      animation.play();
-    };
-
-    getWinCard();
-  };
-  useEffect(() => {
-    const fetchData = async () => {
-      await getItems();
-
-      cardWidth.current = window.innerWidth >= 460 ? 170 : 145;
-      isSmall.current = cardWidth.current === 170 ? false : true;
-
-      requestAnimationFrame(() => {
-        centerActiveElement();
+    if (activeCard) {
+      const cardRect = activeCard.getBoundingClientRect();
+      const containerCenterX = window.innerWidth / 2;
+      const cardCenterX = cardRect.left + activeCardWidth / 2;
+      const offset = containerCenterX - cardCenterX;
+      // Центрируем активный элемент
+      gsap.to(container, {
+        x: `+=${offset}`,
+        duration: 0.5,
+        force3D: true,
+        willChange: "transform",
+        ease: "power2.out",
       });
+    }
+  };
 
-      if (itemsBox.current) {
-        totalWidth.current = itemsBox.current.scrollWidth / repeatCount.current;
-      }
+  const calculateShiftPosition = (prizeId, rounds = 2) => {
+    const winCard =
+      prizeId -
+      2 +
+      (itemsBox.current.children.length / repeatCount.current) * rounds;
+    const totalCardWidth = cardWidth.current + gap.current;
+    return {
+      winCard,
+      shiftX: winCard * totalCardWidth + cardWidth.current / 2,
     };
+  };
 
-    fetchData();
-  }, []);
+  const startGame = async () => {
+    setIsScrolling(true);
+
+    const prizeId = await getWinCardInfo();
+    if (!prizeId) {
+      setIsScrolling(false);
+      return;
+    }
+
+    setWinPrize(prizeId);
+
+    // находим index выигрышной карты и считаем её позицию
+    const { winCard, shiftX } = calculateShiftPosition(prizeId);
+    // Удаляем active если есть
+    document
+      .querySelector(".cardsScroll-item.active")
+      ?.classList.remove("active");
+    // Создаём и запускаем анимацию
+    createAnimation(shiftX, winCard, prizeId).play();
+  };
 
   if (!isLoading) {
     return null;
