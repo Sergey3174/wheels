@@ -23,9 +23,9 @@ export const Carousel = () => {
   const gap = useRef(8);
   const totalWidth = useRef(0);
 
-  const startScrollSound = new Audio("/sounds/open-case.wav");
-  const scrollSound = new Audio("/sounds/case-spin.mp3");
-  const scrollEndSound = new Audio("/sounds/take-drop.wav");
+  // const startScrollSound = new Audio("/sounds/open-case.wav");
+  // const scrollSound = new Audio("/sounds/case-spin.mp3");
+  // const scrollEndSound = new Audio("/sounds/take-drop.wav");
 
   // Получить предметы для рулетки
   const getItems = async () => {
@@ -81,9 +81,9 @@ export const Carousel = () => {
 
   const createAnimation = (shift, winCard, prizeId) => {
     // Импорт аудио
-    startScrollSound.volume = 0.3;
-    scrollSound.volume = 0.3;
-    scrollEndSound.volume = 0.4;
+    // startScrollSound.volume = 0.3;
+    // scrollSound.volume = 0.3;
+    // scrollEndSound.volume = 0.4;
 
     const randomOffset = getRandomShiftOffset();
 
@@ -112,10 +112,10 @@ export const Carousel = () => {
         willChange: "transform",
         ease: "power4.out",
         // звук открытия крутилки
-        onStart: function () {
-          startScrollSound.currentTime = 0;
-          startScrollSound.play().catch(() => {});
-        },
+        // onStart: function () {
+        //   startScrollSound.currentTime = 0;
+        //   startScrollSound.play().catch(() => {});
+        // },
         onUpdate: function () {
           const currentX = gsap.getProperty(itemsBox.current, "x");
           let centerIndex;
@@ -134,16 +134,16 @@ export const Carousel = () => {
             //   .classList.remove("activeScroll");
           }
           // Для проигрыша звука
-          if (currentActiveIndex.current !== centerIndex) {
-            scrollSound.currentTime = 0;
-            scrollSound.play().catch(() => {});
-          }
+          // if (currentActiveIndex.current !== centerIndex) {
+          //   scrollSound.currentTime = 0;
+          //   scrollSound.play().catch(() => {});
+          // }
           currentActiveIndex.current = centerIndex;
         },
         onComplete: () => {
           // проигрыш финального звука
-          scrollEndSound.currentTime = 0;
-          scrollEndSound.play().catch(() => {});
+          // scrollEndSound.currentTime = 0;
+          // scrollEndSound.play().catch(() => {});
           const cards = document.querySelectorAll(".cardsScroll-item");
           // удаляем все возможные активные элементы
           cards.forEach((item) =>
