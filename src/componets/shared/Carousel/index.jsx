@@ -126,12 +126,12 @@ export const Carousel = () => {
           );
           // Применяет стиль для центрального элемента
           if (centerIndex > 1 && currentActiveIndex.current !== centerIndex) {
-            document
-              .querySelector(`.cardsScroll-item-${centerIndex}`)
-              .classList.add("activeScroll");
-            document
-              .querySelector(`.cardsScroll-item-${centerIndex - 1}`)
-              .classList.remove("activeScroll");
+            // document
+            //   .querySelector(`.cardsScroll-item-${centerIndex}`)
+            //   .classList.add("activeScroll");
+            // document
+            //   .querySelector(`.cardsScroll-item-${centerIndex - 1}`)
+            //   .classList.remove("activeScroll");
           }
           // Для проигрыша звука
           if (currentActiveIndex.current !== centerIndex) {
