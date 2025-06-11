@@ -128,11 +128,6 @@ export const Carousel = () => {
               .querySelector(`.cardsScroll-item-${centerIndex - 1}`)
               .classList.remove("activeScroll");
 
-            if (centerIndex > 2) {
-              document.querySelector(
-                `.cardsScroll-item-${centerIndex - 3}`
-              ).style.visibility = "hidden";
-            }
           }
           // Для проигрыша звука
           if (currentActiveIndex.current !== centerIndex) {
@@ -292,7 +287,6 @@ export const Carousel = () => {
             <div className="cardsScroll" ref={itemsBox}>
               {[]
                 .concat(...Array(repeatCount.current).fill(items))
-                .slice(0, items.length * repeatCount.current - items.length / 2)
                 .map((item, index) => (
                   <Item
                     key={index}
