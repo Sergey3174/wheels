@@ -19,7 +19,7 @@ export const Carousel = () => {
   const cardWidth = useRef(null);
   const currentActiveIndex = useRef(1);
   const itemsBox = useRef(null);
-  const repeatCount = useRef(5);
+  const repeatCount = useRef(3);
   const gap = useRef(8);
   const totalWidth = useRef(0);
 
@@ -32,7 +32,7 @@ export const Carousel = () => {
           "Content-Type": "application/json",
         },
       });
-      
+
       if (data.data.wheel_prizes.length) {
         setItems([...data.data.wheel_prizes]);
         setIsLoading(true);
@@ -120,11 +120,19 @@ export const Carousel = () => {
               cardWidth.current
           );
           // Применяет стиль для центрального элемента
-          if (centerIndex > 1) {
+          if (centerIndex > 1 && currentActiveIndex.current !== centerIndex) {
             document
-              .querySelectorAll(".cardsScroll-item")[centerIndex].classList.add("activeScroll");
+              .querySelector(`.cardsScroll-item-${centerIndex}`)
+              .classList.add("activeScroll");
             document
-              .querySelectorAll(".cardsScroll-item")[centerIndex - 1].classList.remove("activeScroll");
+              .querySelector(`.cardsScroll-item-${centerIndex - 1}`)
+              .classList.remove("activeScroll");
+
+            if (centerIndex > 2) {
+              document.querySelector(
+                `.cardsScroll-item-${centerIndex - 3}`
+              ).style.visibility = "hidden";
+            }
           }
           // Для проигрыша звука
           if (currentActiveIndex.current !== centerIndex) {
@@ -284,9 +292,11 @@ export const Carousel = () => {
             <div className="cardsScroll" ref={itemsBox}>
               {[]
                 .concat(...Array(repeatCount.current).fill(items))
+                .slice(0, items.length * repeatCount.current - items.length / 2)
                 .map((item, index) => (
                   <Item
                     key={index}
+                    index={index}
                     count={item.tickets}
                     isActive={index === 1 ? "active" : ""}
                   />
