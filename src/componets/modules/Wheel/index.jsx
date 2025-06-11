@@ -5,7 +5,7 @@ export const WheelPage = () => {
     <>
       <header className="header">
         <div className="contaiber">
-          <div className="header__inner">Тут Header</div>
+          <div className="header__inner">Header</div>
         </div>
       </header>
 
@@ -15,7 +15,7 @@ export const WheelPage = () => {
 
       <footer className="footer">
         <div className="container">
-          <div className="footer__inner">Тутс Footer</div>
+          <div className="footer__inner">Footer</div>
         </div>
       </footer>
     </>

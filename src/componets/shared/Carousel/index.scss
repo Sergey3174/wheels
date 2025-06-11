@@ -2,6 +2,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+
   gap: 10px;
   overflow: hidden;
   position: relative;
@@ -16,13 +17,13 @@
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 0;
-    background-image: url(/icons/decors/starBg.svg);
   }
   &__box {
     flex: 1;
     display: flex;
     padding: 32px 0;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     position: relative;
     max-width: 460px;
@@ -34,7 +35,6 @@
   &__info {
     position: relative;
     width: 100%;
-    margin-top: auto;
   }
 
   &__box {
@@ -49,7 +49,7 @@
     will-change: transform;
     backface-visibility: hidden;
     transform-style: preserve-3d;
-    transform: translateX(-41px);
+    transform: translateX(-60px);
 
     &__mark {
       position: absolute;
@@ -61,12 +61,14 @@
   }
 
   &__footer {
-    margin-top: auto;
+    position: absolute;
+    bottom: 30px;
     padding: 0 30px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    user-select: none;
   }
 
   .button {
@@ -80,4 +82,7 @@
     width: 100%;
     margin: 0;
   }
+}
+.cardsScroll__mark {
+  user-select: none;
 }

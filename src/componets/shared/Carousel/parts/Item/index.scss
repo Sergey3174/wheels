@@ -1,68 +1,63 @@
 .cardsScroll-item {
   min-width: 170px;
-  max-width: 170px;
   min-height: 210px;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1;
-  text-transform: uppercase;
   display: flex;
   flex-direction: column;
   gap: 3px;
   align-items: center;
   justify-content: center;
   background-color: #030e1b99;
-  padding: 24px 16px;
   border-radius: 8px;
   box-shadow: 0px 14px 14px 0px #00000040;
   border: 2px solid #ae00ff;
-  transition: all 0.5s;
+  transition: transform 0.3s linear, min-height 0.3s linear,
+    min-width 0.3s linear;
   transform-origin: center;
+  backface-visibility: hidden;
+  transform: translateZ(0);
   position: relative;
+  user-select: none;
+  will-change: min-height, min-width;
 
-  &.activeScroll {
-    min-height: 273px;
-    min-width: 213px;
-
-    .img-ticket {
-      img {
-        width: 175px;
-        position: relative;
-        z-index: 4;
-      }
-      
-      &:before {
-        z-index: 3;
-      }
-    }
-  }
-
-
-  @media (max-width: 400px) {
-    min-width: 145px;
-    max-width: 170px;
-
-    &.active,
-    &.activeScroll {
-      min-height: 273px;
-      min-width: 183px;
-    }
+  p {
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 30px;
+    transition: transform 0.3s linear;
   }
 
   .img-ticket {
+    position: relative;
+
+    &::before {
+      z-index: 3;
+      transition: transform 0.3s linear;
+    }
     img {
+      z-index: 4;
+      transition: transform 0.3s linear;
+      width: 100px;
       rotate: 30deg;
     }
   }
 
-  // &:before {
-  //   position: absolute;
-  //   content:"";
-  //   background-image: radial-gradient(50% 50% at 50% 50%, rgba(174, 0, 255, 0.9) 0%, rgba(174, 0, 255, 0) 100%);
-  //   top: 0;
-  //   width: 100%;
-  //   height: 22px;
-  // }
+  &.activeScroll {
+    min-height: 225px;
+    min-width: 180px;
+    font-size: 32px;
+    z-index: 5;
+
+    p {
+      transform: translateY(6px);
+    }
+    .img-ticket {
+      img {
+        transform: scale(1.15);
+        z-index: 4;
+      }
+    }
+  }
 
   &.active {
     min-height: 273px;
@@ -76,16 +71,29 @@
     position: relative;
     z-index: 5;
     scale: 1;
+    box-shadow: 0px 9px 20px 0px #0b001f94;
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: -13px;
+      width: 100%;
+      height: 22px;
+      background-image: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(174, 0, 255, 0.9) 0%,
+        rgba(174, 0, 255, 0) 100%
+      );
+    }
 
     .img-ticket {
+      &::before {
+        transform: scale(1.2);
+      }
       img {
-        width: 175px;
+        width: 155px;
         position: relative;
         z-index: 4;
-      }
-      
-      &:before {
-        z-index: 3;
       }
     }
   }
@@ -96,5 +104,29 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+}
+
+@media (max-width: 460px) {
+  .cardsScroll-item {
+    min-width: 145px;
+    min-height: 189px;
+  }
+
+  .cardsScroll-item.activeScroll {
+    min-width: 155px;
+    min-height: 210px;
+
+    .img-ticket {
+      img {
+        transform: scale(1);
+        z-index: 4;
+      }
+    }
+  }
+
+  .cardsScroll-item.active {
+    min-width: 183px;
+    min-height: 273px;
   }
 }

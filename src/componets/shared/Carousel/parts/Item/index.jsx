@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import './index.scss';
+import "./index.scss";
 
-export const Item = React.memo(({ count }) => {
+export const Item = React.memo(({ count, isActive }) => {
   return (
-    <div className="cardsScroll-item">
+    <div className={`cardsScroll-item ${isActive ? "active" : ""}`}>
       <div className="img-ticket">
-        <img src="/icons/tickets/ticketNoShadow.svg" alt="иконка билета" />
+        <img src="/icons/tickets/ticketNoShadow.png" alt="иконка билета" />
       </div>
 
       <div className="cardsScroll-item__content">
