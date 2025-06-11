@@ -22,7 +22,7 @@ export const Carousel = () => {
   const repeatCount = useRef(3);
   const gap = useRef(8);
   const totalWidth = useRef(0);
-  const isIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isIPhone = false;
 
   const startScrollSound = new Audio("/sounds/open-case.wav");
   const scrollSound = new Audio("/sounds/case-spin.mp3");
