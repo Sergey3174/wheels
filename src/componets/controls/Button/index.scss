@@ -1,0 +1,39 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 28px;
+    min-height: 60px;
+    background-image: linear-gradient(94.46deg, #FFB800 -0.34%, #FF8800 99.66%);
+    border-radius: 8px;
+    box-shadow: 0px 4px 14px 0px hsla(0, 0%, 0%, 0.549);
+    // margin: 0 auto;
+    margin: 0 32px;
+
+    &:disabled {
+       pointer-events: none;
+       background-image: none;
+       background-color: gray;
+    }
+
+    .button-price {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+
+            img,
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

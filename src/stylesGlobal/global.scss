@@ -1,0 +1,55 @@
+body,
+#root {
+    min-height: 100vh;
+}
+
+body {
+    font-weight: 600;
+    // max-width: 360px;
+    color:#FFFFFF;
+    font-size: 30px;
+    line-height: 1;
+    font-family: 'Montserrat';
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    background-image: linear-gradient(180deg, #0F1526 0%, #344A82 52%, #0F1526 100%);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.main {
+    flex: 1;
+}
+
+.img-ticket {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:before {
+        position: absolute;
+        content:"";
+        width: 340px;
+        height: 310px;
+        background-repeat: no-repeat;
+        z-index: 0;
+        background-image: url(/icons/decors/starLinear.svg);
+    }
+
+    img {
+        width: 114px;
+        rotate: 10deg;
+        transition: all .5s;
+    }   
+}

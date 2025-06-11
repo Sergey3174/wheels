@@ -1,0 +1,132 @@
+.modal {
+  position: fixed;
+  max-width: 460px;
+  // max-height: 40vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: #171f32;
+  border-radius: 16px 16px 0 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .5s;
+  margin: 0 auto;
+
+  // @media(max-height:900px) {
+  //   max-height: 30vh;
+  // }
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    font-weight: 600;
+  }
+
+  &__head {
+    min-height: 76px;
+    background-color: #1b364f;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__head-decor {
+    position: absolute;
+    top: 8px;
+    height: 3px;
+    max-width: 42px;
+    width: 100%;
+    display: flex;
+    background-color: #6C89A9;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &__content {
+    padding: 0 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #00ffa3;
+    font-size: 20px;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    z-index: 3;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(94.6deg, #ff1b2d 2.36%, #df006b 98.71%);
+    padding: 10px;
+    min-height: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    color: #fff;
+  }
+
+  @media(max-height:920px) {
+    .img-ticket img {
+      height: 60px;
+    }
+  }
+
+  @media(max-height:800px) {
+    .img-ticket img {
+      height: 60px;
+    }
+
+    &__head {
+      min-height: 56px;
+    }
+
+    &__info {
+      font-size: 13px;
+    }
+  }
+
+  @media(max-height:750px) {
+    &__head {
+      font-size: 13px;
+      padding: 20px;
+      min-height: 0;
+    }
+
+    .img-ticket img {
+      height: 30px;
+    }
+    
+  }
+}
