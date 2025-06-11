@@ -242,49 +242,7 @@ export const Carousel = () => {
     <>
       <section className="carousel">
         {/* Не знаю как вы с свг работаете, поэтому оставил так */}
-        <svg
-          style={{
-            position: "absolute",
-            inset: "0",
-            width: "100%",
-          }}
-          width="360"
-          height="800"
-          viewBox="0 0 360 800"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g filter="url(#filter0_f_2003_15939)">
-            <path
-              d="M180.5 -151L210.626 249.047L391.55 -109.02L266.291 272.104L570.469 10.5306L308.896 314.709L690.02 189.45L331.953 370.374L732 400.5L331.953 430.626L690.02 611.55L308.896 486.291L570.469 790.469L266.291 528.896L391.55 910.02L210.626 551.953L180.5 952L150.374 551.953L-30.5499 910.02L94.7089 528.896L-209.469 790.469L52.1045 486.291L-329.02 611.55L29.0471 430.626L-371 400.5L29.0471 370.374L-329.02 189.45L52.1045 314.709L-209.469 10.5306L94.7089 272.104L-30.5499 -109.02L150.374 249.047L180.5 -151Z"
-              fill="white"
-              fillOpacity="0.09"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_2003_15939"
-              x="-395"
-              y="-175"
-              width="1151"
-              height="1151"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="12"
-                result="effect1_foregroundBlur_2003_15939"
-              />
-            </filter>
-          </defs>
-        </svg>
+
         {/* Не знаю как вы с свг работаете, поэтому оставил так */}
 
         <div className="carousel__box">
