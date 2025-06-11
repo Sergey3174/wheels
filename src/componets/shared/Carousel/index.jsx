@@ -22,7 +22,7 @@ export const Carousel = () => {
   const repeatCount = useRef(3);
   const gap = useRef(8);
   const totalWidth = useRef(0);
-  const isIPhone = false;
+  const isIPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   const startScrollSound = new Audio("/sounds/open-case.wav");
   const scrollSound = new Audio("/sounds/case-spin.mp3");
@@ -91,12 +91,9 @@ export const Carousel = () => {
 
     // Дополнительный отступ для различных экранов и отступов(чтобы нормально работала смена активного элемента)
     const additionalOffset = isSmall.current
-      ? randomOffset > -20
-        ? 30
-        : 20
-      : randomOffset > 0
-      ? 0
-      : 15;
+      ? 30
+      : 0
+      
     // Анимация прокрутки с рандомным смещением
     return gsap
       .timeline()
@@ -128,15 +125,6 @@ export const Carousel = () => {
             Math.abs(currentX + additionalOffset + gap.current * prizeId - 2) /
               cardWidth.current
           );
-          // Применяет стиль для центрального элемента
-          if (centerIndex > 1 && currentActiveIndex.current !== centerIndex) {
-            // document
-            //   .querySelector(`.cardsScroll-item-${centerIndex}`)
-            //   .classList.add("activeScroll");
-            // document
-            //   .querySelector(`.cardsScroll-item-${centerIndex - 1}`)
-            //   .classList.remove("activeScroll");
-          }
           // Для проигрыша звука
           if (currentActiveIndex.current !== centerIndex) {
             if (!isIPhone) {
